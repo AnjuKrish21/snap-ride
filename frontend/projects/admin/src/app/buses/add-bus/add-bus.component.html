@@ -1,0 +1,19 @@
+<app-go-back></app-go-back>
+<!-- Add Bus Form -->
+<form [formGroup]="busForm" (ngSubmit)="onSubmit()" class="add-bus-form">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Bus Name</mat-label>
+    <input matInput formControlName="name" required>
+    <mat-error *ngIf="busForm.get('name')?.hasError('required')">Bus name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Route</mat-label>
+    <input matInput formControlName="route" required>
+    <mat-error *ngIf="busForm.get('route')?.hasError('required')">Route is required</mat-error>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" type="submit" [disabled]="busForm.invalid">
+    Add Bus
+  </button>
+</form>

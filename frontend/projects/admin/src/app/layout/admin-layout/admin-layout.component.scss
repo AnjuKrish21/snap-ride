@@ -1,0 +1,17 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.admin-content {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 16px;
+}

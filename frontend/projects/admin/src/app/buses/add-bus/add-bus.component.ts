@@ -1,0 +1,32 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
+import { GoBackComponent } from '../../shared/go-back/go-back.component';
+import { materialImports } from '../../shared/material.imports';
+
+@Component({
+  selector: 'app-add-bus',
+  imports: [CommonModule, ReactiveFormsModule, ...materialImports, GoBackComponent],
+  templateUrl: './add-bus.component.html',
+  styleUrl: './add-bus.component.scss'
+})
+export class AddBusComponent implements OnInit {
+  busForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.busForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      route: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    if (this.busForm.valid) {
+      // Handle bus creation logic here
+      console.log(this.busForm.value);
+    }
+  }
+}

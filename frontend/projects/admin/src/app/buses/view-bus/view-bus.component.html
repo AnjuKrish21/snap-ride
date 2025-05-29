@@ -1,0 +1,13 @@
+<app-go-back></app-go-back>
+
+@if (bus) {
+  <div class="view-bus-details">
+    <h2>{{ bus.name }}</h2>
+    <mat-list>
+      <mat-list-item>
+        <strong>Route:</strong>&nbsp; {{ bus.route }}
+      </mat-list-item>
+      <mat-list-item> <strong>ID:</strong>&nbsp; {{ bus.id }} </mat-list-item>
+    </mat-list>
+  </div>
+}

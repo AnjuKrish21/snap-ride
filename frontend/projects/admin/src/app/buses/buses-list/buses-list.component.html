@@ -1,0 +1,48 @@
+<div class="buses-header">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Quick Search</mat-label>
+    <input matInput placeholder="Search buses..." [(ngModel)]="searchTerm">
+    <button mat-icon-button matSuffix *ngIf="searchTerm" (click)="searchTerm=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-fab color="primary" aria-label="Add Bus" (click)="onAddBus()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="buses-table">
+  <table mat-table [dataSource]="filteredBuses" class="mat-elevation-z2">
+
+    <!-- Bus Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Bus Name </th>
+      <td mat-cell *matCellDef="let bus"> {{bus.name}} </td>
+    </ng-container>
+
+    <!-- Route Column -->
+    <ng-container matColumnDef="route">
+      <th mat-header-cell *matHeaderCellDef> Route </th>
+      <td mat-cell *matCellDef="let bus"> {{bus.route}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let bus">
+        <button mat-icon-button color="primary" (click)="onView(bus)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="onEdit(bus)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(bus)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
