@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { FormErrorComponent } from '../../shared/form-error/form-error.component';
 import { GoBackComponent } from '../../shared/go-back/go-back.component';
 import { materialImports } from '../../shared/material.imports';
 
 @Component({
   selector: 'app-add-bus',
-  imports: [CommonModule, ReactiveFormsModule, ...materialImports, GoBackComponent],
+  imports: [CommonModule, ReactiveFormsModule, ...materialImports, GoBackComponent, FormErrorComponent],
   templateUrl: './add-bus.component.html',
   styleUrl: './add-bus.component.scss'
 })
