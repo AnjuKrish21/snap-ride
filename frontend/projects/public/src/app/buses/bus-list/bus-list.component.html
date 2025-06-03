@@ -1,0 +1,19 @@
+
+@for (bus of buses; track bus.name) {
+<mat-card class="bus-card">
+  <div class="bus-info">
+    <div>
+      <h3>{{ bus.name }}</h3>
+      <p>{{ bus.type }}</p>
+    </div>
+    <div>
+      <p>Departure: {{ bus.departure }}</p>
+      <p>Arrival: {{ bus.arrival }}</p>
+    </div>
+    <div>
+      <p>Price: ₹{{ bus.price }}</p>
+      <button mat-flat-button color="accent">Book Now</button>
+    </div>
+  </div>
+</mat-card>
+}
