@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import {
-  ConfirmDialogComponent
-} from '../../shared/components/confirm-dialog/confirm-dialog.component';
-import { materialImports } from '../../shared/imports/material.imports';
+    ConfirmDialogComponent
+} from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { materialImports } from '../../../shared/imports/material.imports';
+import { Bus } from '../../model/bus.model';
+import { BusService } from '../../services/bus.service';
 
 @Component({
   selector: 'app-buses-list',
@@ -15,17 +17,27 @@ import { materialImports } from '../../shared/imports/material.imports';
   templateUrl: './buses-list.component.html',
   styleUrl: './buses-list.component.scss'
 })
-export class BusesListComponent {
+export class BusesListComponent implements OnInit {
   constructor(private readonly router: Router,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly busService: BusService
   ) { }
 
   searchTerm = '';
-  buses = [
-    { id: 1, name: 'Express 1', route: 'A - B' },
-    { id: 2, name: 'Express 2', route: 'B - C' }
-  ];
+  buses: Bus[] = [];
   displayedColumns = ['name', 'route', 'actions'];
+
+  ngOnInit(): void {
+    this.loadBuses();
+  }
+
+  private loadBuses() {
+    this.busService.getAllBuses().subscribe({
+      next: (buses: Bus[]) => {
+        this.buses = buses;
+      }
+    });
+  }
 
   get filteredBuses() {
     if (!this.searchTerm) return this.buses;

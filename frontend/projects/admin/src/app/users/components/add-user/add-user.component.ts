@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -18,16 +18,20 @@ export class AddUserComponent {
     // id:5 ,
     name: '',
     email: '',
-    role: ''
+    role: '',
+    password: 'test1234',
   };
 
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService,
+    private readonly location: Location
+  ) { }
 
   onSubmit() {
     this.userService.addUser(this.user).subscribe({
       next: () => {
-        this.user = { name: '', email: '', role: '' }; // Reset form
+        this.location.back();
       }
     });
+
   }
 }

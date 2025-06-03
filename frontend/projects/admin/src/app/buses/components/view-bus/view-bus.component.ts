@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { GoBackComponent } from '../../shared/components/go-back/go-back.component';
-import { materialImports } from '../../shared/imports/material.imports';
+import { GoBackComponent } from '../../../shared/components/go-back/go-back.component';
+import { materialImports } from '../../../shared/imports/material.imports';
 
 @Component({
   selector: 'app-view-bus',

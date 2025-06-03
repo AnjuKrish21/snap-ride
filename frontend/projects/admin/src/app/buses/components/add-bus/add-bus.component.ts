@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { FormErrorComponent } from '../../shared/components/form-error/form-error.component';
-import { GoBackComponent } from '../../shared/components/go-back/go-back.component';
-import { materialImports } from '../../shared/imports/material.imports';
+import { FormErrorComponent } from '../../../shared/components/form-error/form-error.component';
+import { GoBackComponent } from '../../../shared/components/go-back/go-back.component';
+import { materialImports } from '../../../shared/imports/material.imports';
 
 @Component({
   selector: 'app-add-bus',

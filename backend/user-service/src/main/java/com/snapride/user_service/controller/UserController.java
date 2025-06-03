@@ -15,7 +15,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() { return userRepository.findAll(); }
+    public List<User> getAllUsers() { return userRepository.findAllByOrderByIdDesc(); }
 
     @PostMapping
     public User createUser(@RequestBody User user) { return userRepository.save(user); }
