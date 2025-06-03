@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { materialImports } from '../../shared/material.imports';
+import { materialImports } from '../../shared/imports/material.imports';
 
 @Component({
   selector: 'app-admin-sidebar',

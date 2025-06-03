@@ -5,7 +5,8 @@ import { BusesListComponent } from './buses/buses-list/buses-list.component';
 import { ViewBusComponent } from './buses/view-bus/view-bus.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
-import { UserListComponent } from './users/user-list/user-list.component';
+import { AddUserComponent } from './users/components/add-user/add-user.component';
+import { UserListComponent } from './users/components/user-list/user-list.component';
 
 export const adminRoutes: Routes = [
   {
@@ -18,6 +19,7 @@ export const adminRoutes: Routes = [
       { path: 'buses/add', component: AddBusComponent},
       { path: 'buses/view/:id', component: ViewBusComponent},
       { path: 'users', component: UserListComponent },
+      { path: 'users/add', component: AddUserComponent },
       { path: '**', redirectTo: 'dashboard' }
     ]
   }

@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { materialImports } from '../material.imports';
+import { materialImports } from '../../imports/material.imports';
 
 @Component({
   selector: 'app-go-back',

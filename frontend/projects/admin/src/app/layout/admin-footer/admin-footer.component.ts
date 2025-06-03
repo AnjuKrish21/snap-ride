@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { materialImports } from '../../shared/material.imports';
+import { materialImports } from '../../shared/imports/material.imports';
 
 @Component({
   selector: 'app-admin-footer',

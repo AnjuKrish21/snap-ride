@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import { materialImports } from '../material.imports';
+import { materialImports } from '../../imports/material.imports';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 
 fdescribe('ConfirmDialogComponent', () => {

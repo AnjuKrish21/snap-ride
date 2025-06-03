@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { materialImports } from '../../shared/material.imports';
-import { User } from '../model/user.model';
-import { UserService } from '../services/user.service';
+import { materialImports } from '../../../shared/imports/material.imports';
+import { User } from '../../model/user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-list',

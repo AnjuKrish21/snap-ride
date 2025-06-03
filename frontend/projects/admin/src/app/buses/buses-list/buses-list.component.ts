@@ -4,8 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
-import { materialImports } from '../../shared/material.imports';
+import {
+  ConfirmDialogComponent
+} from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { materialImports } from '../../shared/imports/material.imports';
 
 @Component({
   selector: 'app-buses-list',

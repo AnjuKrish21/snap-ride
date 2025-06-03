@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { materialImports } from '../../shared/material.imports';
+import { materialImports } from '../../shared/imports/material.imports';
 import { AdminFooterComponent } from '../admin-footer/admin-footer.component';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { AdminSidebarComponent } from '../admin-sidebar/admin-sidebar.component';

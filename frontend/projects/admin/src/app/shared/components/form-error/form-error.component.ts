@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
-import { FORM_ERROR_MESSAGES } from '../constants/form-error-messages';
-import { materialImports } from '../material.imports';
+import { FORM_ERROR_MESSAGES } from '../../constants/form-error-messages';
+import { materialImports } from '../../imports/material.imports';
 
 @Component({
   selector: 'app-form-error',
