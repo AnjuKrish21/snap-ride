@@ -8,3 +8,13 @@ body {
   height: 100%;
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
+
+mat-toolbar {
+  background: #8458b3 !important;
+  color: #fff !important;
+}
+
+.btn-inside {
+  background: linear-gradient(to right, #e5eaf5, #8458B3) !important;
+  color: #fff !important;
+}

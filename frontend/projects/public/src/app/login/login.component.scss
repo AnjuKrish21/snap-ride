@@ -2,9 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 21vh); /* Adjust for header height */
-  background: linear-gradient(to right, #2196f3, #21cbf3);
-  padding: 17px;
+  height: 100vh;
+  background: linear-gradient(to right, #e5eaf5, #8458b3);
 }
 
 .login-card {
