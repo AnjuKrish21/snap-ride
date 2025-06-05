@@ -1,20 +1,162 @@
 <app-go-back></app-go-back>
 <!-- Add Bus Form -->
 <form [formGroup]="busForm" (ngSubmit)="onSubmit()" class="add-form">
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Bus Name</mat-label>
-    <input matInput formControlName="name" required>
-    <app-form-error [control]="busForm.get('name')" controlName="name"></app-form-error>
-    <!-- <mat-error *ngIf="busForm.get('name')?.hasError('required')">Bus name is required</mat-error> -->
-  </mat-form-field>
+  <mat-grid-list cols="2" gutterSize="24px" rowHeight="fit">
+    <mat-grid-tile>
+      <app-form-error [control]="busForm.get('name')" controlName="name">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Bus Name</mat-label>
+          <input matInput [formControlName]="BUS_INPUTS.NAME" required />
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-form-error
+        [control]="busForm.get('registrationNumber')"
+        controlName="registrationNumber"
+      >
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Registration Number</mat-label>
+          <input
+            matInput
+            [formControlName]="BUS_INPUTS.REGISTRATION_NUMBER"
+            required
+          />
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-form-error [control]="busForm.get('type')" controlName="type">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Type</mat-label>
+          <mat-select [formControlName]="BUS_INPUTS.TYPE" required>
+            <mat-option value="AC">AC</mat-option>
+            <mat-option value="Non AC">Non AC</mat-option>
+            <mat-option value="Sleeper">Sleeper</mat-option>
+            <mat-option value="Seater">Seater</mat-option>
+            <!-- Add more types as needed -->
+          </mat-select>
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-form-error
+        [control]="busForm.get('capacity')"
+        controlName="capacity"
+      >
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Capacity</mat-label>
+          <input
+            matInput
+            type="number"
+            [formControlName]="BUS_INPUTS.CAPACITY"
+            min="1"
+            required
+          />
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Route</mat-label>
-    <input matInput formControlName="route" required>
-    <mat-error *ngIf="busForm.get('route')?.hasError('required')">Route is required</mat-error>
-  </mat-form-field>
+    <mat-grid-tile>
+      <app-form-error [control]="busForm.get('from')" controlName="from">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>From</mat-label>
+          <input
+            matInput
+            [formControlName]="BUS_INPUTS.FROM"
+            [matAutocomplete]="autoFrom"
+            required
+          />
+          <mat-autocomplete #autoFrom="matAutocomplete" [displayWith]="displayLocationName">
+            @for (option of filteredFromLocations | async; track option.id) {
+            <mat-option [value]="option">
+              {{ option.name }}
+            </mat-option>
+          }
+          </mat-autocomplete>
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-form-error [control]="busForm.get('to')" controlName="to">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>To</mat-label>
+          <input
+            matInput
+            [formControlName]="BUS_INPUTS.TO"
+            [matAutocomplete]="autoTo"
+            required
+          />
+          <mat-autocomplete #autoTo="matAutocomplete" [displayWith]="displayLocationName">
+            @for (option of filteredToLocations | async; track option.id) {
+            <mat-option [value]="option">
+              {{ option.name }}
+            </mat-option>
+          }
+          </mat-autocomplete>
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
+    <!-- ...existing code... -->
 
-  <button mat-flat-button color="primary" type="submit" [disabled]="busForm.invalid">
-    Add Bus
-  </button>
+    <!-- Add this mat-grid-tile after the "To" field -->
+    <mat-grid-tile>
+      <app-form-error [control]="busForm.get('stops')" controlName="stops">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Stops</mat-label>
+          <mat-select [formControlName]="BUS_INPUTS.STOPS" multiple>
+            @for (stop of locations; track stop.id) {
+            <mat-option [value]="stop">{{
+              stop.name
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <app-form-error
+        [control]="busForm.get('departureTime')"
+        controlName="departureTime"
+      >
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Departure Time</mat-label>
+          <input
+            matInput
+            type="time"
+            [formControlName]="BUS_INPUTS.DEPARTURE_TIME"
+            required
+          />
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-form-error
+        [control]="busForm.get('arrivalTime')"
+        controlName="arrivalTime"
+      >
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Arrival Time</mat-label>
+          <input
+            matInput
+            type="time"
+            [formControlName]="BUS_INPUTS.ARRIVAL_TIME"
+            required
+          />
+        </mat-form-field>
+      </app-form-error>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="busForm.invalid"
+      >
+        Add Bus
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
 </form>

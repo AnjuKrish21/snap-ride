@@ -1,10 +1,10 @@
 package com.snapride.bus_service.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "buses")
 @Data
@@ -17,5 +17,23 @@ public class Bus {
 
     private String name;
 
-    private String route;
+    private String type;
+
+    private String registrationNumber;
+
+    private String arrivalTime;
+
+    private Integer capacity;
+
+    private String departureTime;
+
+    @ManyToOne
+    @JoinColumn(name = "from_location_id")
+    private Locations fromLocation;
+
+    @ManyToOne
+    @JoinColumn(name = "to_location_id")
+    private Locations toLocation;
+
+    private String stops;
 }

@@ -5,7 +5,7 @@ import com.snapride.bus_service.repository.BusRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/buses")
 public class BusController {
@@ -21,6 +21,8 @@ public class BusController {
 
     @PostMapping
     public Bus createBus(@RequestBody Bus bus) {
+        System.out.println("Received bus data: " + bus.getName());
+        System.out.println("Received bus data: " + bus.getId());// Simple console log
         return busRepository.save(bus);
     }
 

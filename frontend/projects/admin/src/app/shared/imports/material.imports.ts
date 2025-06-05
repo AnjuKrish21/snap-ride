@@ -1,6 +1,8 @@
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -19,5 +21,7 @@ export const materialImports = [
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatGridListModule,
+  MatAutocompleteModule
 ];
