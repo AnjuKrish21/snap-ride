@@ -8,33 +8,52 @@
         </mat-card-header>
 
         <mat-card-content>
-          <form (ngSubmit)="onRegister()" #registerForm="ngForm">
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Full Name</mat-label>
-              <input matInput name="name" [(ngModel)]="name" required />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Email</mat-label>
-              <input
-                matInput
-                type="email"
-                name="email"
-                [(ngModel)]="email"
-                required
-              />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Password</mat-label>
-              <input
-                matInput
-                type="password"
-                name="password"
-                [(ngModel)]="password"
-                required
-              />
-            </mat-form-field>
+          <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
+            @if(registerForm.errors && registerForm.errors['passwordsMismatch'])
+            {
+            <mat-error class="error-message">
+              Passwords do not match.
+            </mat-error>
+            }
+            <app-form-error
+              [control]="registerForm.get('name')"
+              controlName="name"
+            >
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Full Name</mat-label>
+                <input matInput name="name" formControlName="name" required />
+              </mat-form-field>
+            </app-form-error>
+            <app-form-error
+              [control]="registerForm.get('email')"
+              controlName="email"
+            >
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  name="email"
+                  formControlName="email"
+                  required
+                />
+              </mat-form-field>
+            </app-form-error>
+            <app-form-error
+              [control]="registerForm.get('password')"
+              controlName="password"
+            >
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  name="password"
+                  formControlName="password"
+                  required
+                />
+              </mat-form-field>
+            </app-form-error>
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Confirm Password</mat-label>
@@ -42,15 +61,13 @@
                 matInput
                 type="password"
                 name="confirmPassword"
-                [(ngModel)]="confirmPassword"
+                formControlName="confirmPassword"
                 required
               />
             </mat-form-field>
-
             <button
               mat-raised-button
               color="primary"
-              (click)="redirectToLogin()"
               class="full-width btn-inside"
               type="submit"
             >
@@ -60,7 +77,9 @@
         </mat-card-content>
 
         <mat-card-actions class="register-actions">
-          <a mat-button  (click)="redirectToLogin()">Already have an account? Login</a>
+          <a mat-button (click)="redirectToLogin()"
+            >Already have an account? Login</a
+          >
         </mat-card-actions>
       </mat-card>
     </div>

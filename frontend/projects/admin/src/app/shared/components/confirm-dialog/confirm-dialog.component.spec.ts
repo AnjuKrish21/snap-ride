@@ -1,10 +1,13 @@
+import { of } from 'rxjs';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
 import { materialImports } from '../../imports/material.imports';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 
-fdescribe('ConfirmDialogComponent', () => {
+describe('ConfirmDialogComponent', () => {
   let component: ConfirmDialogComponent;
   let fixture: ComponentFixture<ConfirmDialogComponent>;
 
@@ -14,10 +17,35 @@ fdescribe('ConfirmDialogComponent', () => {
         ...materialImports,
       ],
       providers: [
-        ActivatedRoute
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: '123' }), // mock route params
+            queryParams: of({}),
+            snapshot: {
+              paramMap: {
+                get: (key: string) => '123',
+              },
+            },
+          }
+        },
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {
+
+          },
+        },
+
+        {
+          provide: MatDialogRef,
+          useValue: {
+            close: jasmine.createSpy('close'),
+            afterClosed: () => of(true) // mock afterClosed observable
+          }
+        },
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ConfirmDialogComponent);
     component = fixture.componentInstance;

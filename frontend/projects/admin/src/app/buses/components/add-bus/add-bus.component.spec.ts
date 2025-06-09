@@ -1,3 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddBusComponent } from './add-bus.component';
@@ -8,9 +10,14 @@ describe('AddBusComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddBusComponent]
+      imports: [
+        AddBusComponent],
+      providers: [
+        provideHttpClientTesting(),
+        provideHttpClient()
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AddBusComponent);
     component = fixture.componentInstance;

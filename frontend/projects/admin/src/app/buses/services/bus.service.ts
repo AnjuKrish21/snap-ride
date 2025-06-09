@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { config } from '../../config/config';
 import { Bus, BusType, Location } from '../model/bus.model';
 
 @Injectable({
@@ -10,27 +11,27 @@ import { Bus, BusType, Location } from '../model/bus.model';
 })
 export class BusService {  
 
- private baseUrl = API_BASE_URL;
+  private baseUrl = config.baseApiUrl;
   constructor(private readonly http: HttpClient) { }
 
   getAllBuses(): Observable<Bus[]> {
-    return this.http.get<Bus[]>(`${this.baseUrl}buses`);
+    return this.http.get<Bus[]>(`${this.baseUrl}/buses`);
   }
 
   updateUser(bus: Bus): Observable<Bus> {
-    return this.http.put<Bus>(`${this.baseUrl}buses/${bus.id}`, bus);
+    return this.http.put<Bus>(`${this.baseUrl}/buses/${bus.id}`, bus);
   }
 
   addUser(bus: Bus): Observable<Bus> {
-    return this.http.post<Bus>(`${this.baseUrl}buses`, bus);
+    return this.http.post<Bus>(`${this.baseUrl}/buses`, bus);
   }
 
   getBusTypes(): Observable<BusType[]> {
-    return this.http.get<BusType[]>(`${this.baseUrl}bus-types`);
+    return this.http.get<BusType[]>(`${this.baseUrl}/bus-types`);
   }
 
   getLocations(): Observable<Location[]> {
-    return this.http.get<Location[]>(`${this.baseUrl}locations`);
+    return this.http.get<Location[]>(`${this.baseUrl}/locations`);
   }
 
   saveBus(bus: Bus): Observable<Bus> {
@@ -42,9 +43,9 @@ export class BusService {
   }
 
   private addBus(bus: Bus): Observable<Bus> {
-    return this.http.post<Bus>(`${this.baseUrl}buses`, bus);
+    return this.http.post<Bus>(`${this.baseUrl}/buses`, bus);
   }
   private updateBus(bus: Bus): Observable<Bus> {
-    return this.http.put<Bus>(`${this.baseUrl}buses/${bus.id}`, bus);
+    return this.http.put<Bus>(`${this.baseUrl}/buses/${bus.id}`, bus);
   }
 }

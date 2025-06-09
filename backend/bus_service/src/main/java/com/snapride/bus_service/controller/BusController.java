@@ -21,8 +21,8 @@ public class BusController {
 
     @PostMapping
     public Bus createBus(@RequestBody Bus bus) {
-        System.out.println("Received bus data: " + bus.getName());
-        System.out.println("Received bus data: " + bus.getId());// Simple console log
+//        System.out.println("Received bus data: " + bus.getName());
+//        System.out.println("Received bus data: " + bus.getId());// Simple console log
         return busRepository.save(bus);
     }
 

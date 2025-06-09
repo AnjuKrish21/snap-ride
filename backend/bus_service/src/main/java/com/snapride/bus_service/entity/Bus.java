@@ -3,8 +3,6 @@ package com.snapride.bus_service.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "buses")
 @Data
@@ -29,11 +27,11 @@ public class Bus {
 
     @ManyToOne
     @JoinColumn(name = "from_location_id")
-    private Locations fromLocation;
+    private Locations fromLocationId;
 
     @ManyToOne
     @JoinColumn(name = "to_location_id")
-    private Locations toLocation;
+    private Locations toLocationId;
 
     private String stops;
 }
