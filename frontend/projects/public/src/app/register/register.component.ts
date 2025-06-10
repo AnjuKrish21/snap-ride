@@ -57,7 +57,7 @@ export class RegisterComponent {
   async onRegister() {
     if (this.registerForm.valid) {
       const { name, email, password, role } = this.registerForm.value;
-      const userPayload = { name, email, password: await Utils.hashPassword(password), role };
+      const userPayload = { name, email, password: password, role };
       this.userService.addUser(userPayload).subscribe({
         next: (user: User) => {
           this.redirectToLogin()

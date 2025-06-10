@@ -12,6 +12,7 @@ const baseUrl = config.baseApiUrl; // This is replaced at build time
   providedIn: 'root'
 })
 export class UserService {
+
   constructor(private readonly http: HttpClient) { }
 
   /**
@@ -28,5 +29,9 @@ export class UserService {
 
   addUser(user: User): Observable<User> {
     return this.http.post<User>(`${baseUrl}/users`, user);
+  }
+
+  login(email: string, password: string): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${baseUrl}/auth/login`, { email: email, password: password });
   }
 }
