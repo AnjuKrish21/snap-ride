@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserService } from '../../../../admin/src/app/users/services/user.service';
 import { RegisterComponent } from './register.component';
 
-fdescribe('RegisterComponent', () => {
+describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
 

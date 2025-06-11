@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-add-user',
-  imports: [CommonModule, FormsModule, materialImports, GoBackComponent],
+  imports: [CommonModule, FormsModule, ...materialImports, GoBackComponent],
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.scss'
 })

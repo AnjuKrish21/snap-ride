@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { materialImports } from '../../shared/imports/material.imports';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,20 @@ import { materialImports } from '../../shared/imports/material.imports';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  constructor(private readonly router: Router) { }
+  isLoggedIn: boolean;
+
+  constructor(private readonly router: Router,
+    private readonly authenticationService: AuthenticationService
+  ) {
+    this.isLoggedIn = this.authenticationService.isLoggedIn;
+  }
 
   redirectToLogin() {
     this.router.navigateByUrl('/login');
+  }
+
+  logout() {
+
   }
 
 }
