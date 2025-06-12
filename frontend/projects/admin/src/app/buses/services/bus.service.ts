@@ -48,4 +48,8 @@ export class BusService {
   private updateBus(bus: Bus): Observable<Bus> {
     return this.http.put<Bus>(`${this.baseUrl}/buses/${bus.id}`, bus);
   }
+
+  getBusById(id: number): Observable<Bus> {
+    return this.http.get<Bus>(`${this.baseUrl}/buses/${id}`);
+  }
 }

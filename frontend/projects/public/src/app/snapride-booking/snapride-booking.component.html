@@ -1,0 +1,38 @@
+
+<div class="seat-selection-container">
+  <h2>Select Your Seat</h2>
+
+  <div class="seats-grid">
+    <button
+      mat-raised-button
+      *ngFor="let seat of seats"
+      [color]="seat.selected ? 'accent' : 'primary'"
+      (click)="toggleSeat(seat)"
+      [disabled]="seat.booked"
+    >
+      {{ seat.number }}
+    </button>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h3>Passenger Details</h3>
+  <form>
+    <mat-form-field appearance="fill">
+      <mat-label>Full Name</mat-label>
+      <input matInput placeholder="Enter your name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mobile Number</mat-label>
+      <input matInput type="tel" placeholder="Enter mobile number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" placeholder="Enter email" />
+    </mat-form-field>
+
+    <button mat-raised-button color="accent">Proceed to Payment</button>
+  </form>
+</div>

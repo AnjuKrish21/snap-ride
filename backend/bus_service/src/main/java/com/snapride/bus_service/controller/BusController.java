@@ -35,8 +35,6 @@ public class BusController {
 
     @GetMapping
     public List<BusDTO> getAllBuses() {
-//        return busRepository.findAllDistinct();
-
         return busRepository.findAll().stream().map(BusDTO::new).collect(Collectors.toList());
     }
 
@@ -67,7 +65,7 @@ public class BusController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Bus> getBusById(@PathVariable Long id) {
-        return busRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<BusDTO> getBusById(@PathVariable Long id) {
+        return busRepository.findById(id).map(BusDTO::new).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }

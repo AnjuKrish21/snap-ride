@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Bus } from '../../../../../admin/src/app/buses/model/bus.model';
 import { BusService } from '../../../../../admin/src/app/buses/services/bus.service';
@@ -13,7 +14,9 @@ import { TimeFormatPipe } from '../../shared/pipes/time-format.pipe';
 })
 export class BusListComponent implements OnInit {
   buses: Bus[] = [];
-  constructor(private readonly busService: BusService) { }
+  constructor(private readonly busService: BusService,
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadBuses();
@@ -28,6 +31,10 @@ export class BusListComponent implements OnInit {
         console.error('Error loading buses:', error);
       }
     });
+  }
+
+  booking(bus: Bus): void {
+    this.router.navigate(['/snapRide/booking', bus.id]);
   }
 
 }

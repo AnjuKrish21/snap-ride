@@ -31,7 +31,7 @@
           <p><strong>From:</strong> {{ bus.fromLocation.name }}</p>
 
           <p><strong>To:</strong> {{ bus.toLocation.name }}</p>
-          <button mat-flat-button color="accent">Book Now</button>
+          <button mat-flat-button color="accent" (click)="booking(bus)">Book Now</button>
         </div>
       </div>
     </div>

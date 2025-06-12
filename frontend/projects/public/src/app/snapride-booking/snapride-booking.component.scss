@@ -1,0 +1,19 @@
+.seat-selection-container {
+  padding: 20px;
+}
+
+.seats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
