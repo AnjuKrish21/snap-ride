@@ -1,19 +1,41 @@
 
-@for (bus of buses; track bus.name) {
+@if( buses.length === 0) {
 <mat-card class="bus-card">
   <div class="bus-info">
-    <div>
-      <h3>{{ bus.name }}</h3>
-      <p>{{ bus.type }}</p>
-    </div>
-    <div>
-      <p>Departure: {{ bus.departure }}</p>
-      <p>Arrival: {{ bus.arrival }}</p>
-    </div>
-    <div>
-      <p>Price: ₹{{ bus.price }}</p>
-      <button mat-flat-button color="accent">Book Now</button>
+    <h2>No Buses Available</h2>
+    <p>
+      Currently, there are no buses available for booking. Please check back
+      later.
+    </p>
+  </div>
+</mat-card>
+} @for (bus of buses; track bus.name) {
+<mat-card class="bus-card">
+  <div class="bus-info">
+    <div class="col s12 m6 l4">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Bus Name: {{ bus.name }}</span>
+          <p><strong>Type:</strong> {{ bus.type }}</p>
+
+          <p><strong>Registration:</strong> {{ bus.registrationNumber }}</p>
+
+          <p><strong>Capacity:</strong> {{ bus.capacity }}</p>
+
+          <p><strong>Arrival:</strong> {{ bus.arrivalTime | timeFormat }}</p>
+
+          <p>
+            <strong>Departure:</strong> {{ bus.departureTime | timeFormat }}
+          </p>
+
+          <p><strong>From:</strong> {{ bus.fromLocation.name }}</p>
+
+          <p><strong>To:</strong> {{ bus.toLocation.name }}</p>
+          <button mat-flat-button color="accent">Book Now</button>
+        </div>
+      </div>
     </div>
   </div>
 </mat-card>
-}
+
+l̥ }

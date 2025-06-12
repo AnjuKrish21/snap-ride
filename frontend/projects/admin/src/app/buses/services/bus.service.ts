@@ -11,7 +11,7 @@ import { Bus, BusType, Location } from '../model/bus.model';
 })
 export class BusService {  
 
-  private baseUrl = config.baseApiUrl;
+  private baseUrl = config.busBaseApiUrl;
   constructor(private readonly http: HttpClient) { }
 
   getAllBuses(): Observable<Bus[]> {

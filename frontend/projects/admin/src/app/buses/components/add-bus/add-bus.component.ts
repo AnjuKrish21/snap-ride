@@ -3,6 +3,7 @@ import { map, Observable, of, startWith } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { FormErrorComponent } from '../../../shared/components/form-error/form-error.component';
 import { GoBackComponent } from '../../../shared/components/go-back/go-back.component';
@@ -31,7 +32,8 @@ export class AddBusComponent implements OnInit {
     return location.name || '';
   };
   constructor(private readonly formBuilder: FormBuilder,
-    private readonly busService: BusService
+    private readonly busService: BusService,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,15 +45,15 @@ export class AddBusComponent implements OnInit {
   }
 
   private getFilteredFromLocations() {
-    this.filteredFromLocations = this.busForm.get(this.BUS_INPUTS.FROM)?.valueChanges.pipe(
+    this.filteredFromLocations = this.busForm.get(this.BUS_INPUTS.FROM_LOCATION)?.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value.name || value || '')),
     ) || of([]);
   }
 
   private getFilteredToLocations() {
-    const to = this.busForm.value?.[this.BUS_INPUTS.TO];
-    this.filteredToLocations = this.busForm.get(this.BUS_INPUTS.TO)?.valueChanges.pipe(
+    const to = this.busForm.value?.[this.BUS_INPUTS.TO_LOCATION];
+    this.filteredToLocations = this.busForm.get(this.BUS_INPUTS.TO_LOCATION)?.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value.name || value || '')),
     ) || of([]);
@@ -77,8 +79,8 @@ export class AddBusComponent implements OnInit {
   private initBusForm() {
     this.busForm = this.formBuilder.group({
       [BusInputs.NAME]: ['', Validators.required],
-      [BusInputs.FROM]: ['', Validators.required],
-      [BusInputs.TO]: ['', Validators.required],
+      [BusInputs.FROM_LOCATION]: ['', Validators.required],
+      [BusInputs.TO_LOCATION]: ['', Validators.required],
       [BusInputs.TYPE]: ['', Validators.required],
       [BusInputs.STOPS]: [[], Validators.required],
       [BusInputs.DEPARTURE_TIME]: ['', Validators.required],
@@ -90,19 +92,12 @@ export class AddBusComponent implements OnInit {
 
   onSubmit() {
     if (this.busForm.valid) {
-      // Handle bus creation logic here
-      console.log(this.busForm.value);
-      this.busService.saveBus(this.busForm.value).subscribe({
-        next: (response) => {
-          console.log('Bus created successfully:', response);
-          // Optionally reset the form or navigate to another page
-          // this.busForm.reset();
-        },
-        error: (error) => {
-          console.error('Error creating bus:', error);
-          // Handle error, show a message to the user, etc.
-        }
-      });
+      this.busService.saveBus(this.busForm.value)
+        .subscribe((response) => {
+          if (response && response.id) {
+            this.router.navigateByUrl('admin/buses');
+          }
+        });
     }
   }
 }

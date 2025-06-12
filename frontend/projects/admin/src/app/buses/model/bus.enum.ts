@@ -1,7 +1,7 @@
 export enum BusInputs {
     NAME = 'name',
-    FROM = 'from',
-    TO = 'to',
+    FROM_LOCATION = 'fromLocation',
+    TO_LOCATION = 'toLocation',
     TYPE = 'type',
     STOPS = 'stops',
     DEPARTURE_TIME = 'departureTime',

@@ -17,7 +17,33 @@ public class BusStops {
     @JoinColumn(name = "bus_id", nullable = false)
     private Bus bus;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "stop_id", nullable = false)
-    private Stop stop;
+    private Locations stop;
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setStop(Locations stop) {
+        this.stop = stop;
+    }
+
+    public Bus getBus() {
+        return bus;
+    }
+
+    public void setBus(Bus bus) {
+        this.bus = bus;
+    }
+
+    public Locations getStop() {
+        return stop;
+    }
 }

@@ -1,42 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { Bus } from '../../../../../admin/src/app/buses/model/bus.model';
+import { BusService } from '../../../../../admin/src/app/buses/services/bus.service';
 import { materialImports } from '../../shared/imports/material.imports';
+import { TimeFormatPipe } from '../../shared/pipes/time-format.pipe';
 
 @Component({
   selector: 'app-bus-list',
-  imports: [...materialImports],
+  imports: [...materialImports, TimeFormatPipe],
   templateUrl: './bus-list.component.html',
   styleUrl: './bus-list.component.scss'
 })
-export class BusListComponent {
-  // Example demo buses array for your Angular app
-  buses = [
-    {
-      id: 1,
-      name: 'Express Travels',
-      type: 'AC Sleeper',
-      departure: '10:00 PM',
-      arrival: '6:00 AM',
-      price: 850,
-      route: 'Bangalore - Chennai'
-    },
-    {
-      id: 2,
-      name: 'CityLink',
-      type: 'Non-AC Seater',
-      departure: '9:30 PM',
-      arrival: '5:30 AM',
-      price: 600,
-      route: 'Bangalore - Hyderabad'
-    },
-    {
-      id: 3,
-      name: 'RedLine',
-      type: 'AC Seater',
-      departure: '11:00 PM',
-      arrival: '7:00 AM',
-      price: 950,
-      route: 'Bangalore - Mumbai'
-    }
-  ];
+export class BusListComponent implements OnInit {
+  buses: Bus[] = [];
+  constructor(private readonly busService: BusService) { }
+
+  ngOnInit(): void {
+    this.loadBuses();
+  }
+
+  private loadBuses(): void {
+    this.busService.getAllBuses().subscribe({
+      next: (buses: Bus[]) => {
+        this.buses = buses;
+      },
+      error: (error: any) => {
+        console.error('Error loading buses:', error);
+      }
+    });
+  }
+
 }

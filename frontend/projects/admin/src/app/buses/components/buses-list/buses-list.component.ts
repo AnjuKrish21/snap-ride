@@ -42,8 +42,7 @@ export class BusesListComponent implements OnInit {
   get filteredBuses() {
     if (!this.searchTerm) return this.buses;
     return this.buses.filter(bus =>
-      bus.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      bus.route.toLowerCase().includes(this.searchTerm.toLowerCase())
+      bus.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 

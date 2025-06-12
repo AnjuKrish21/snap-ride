@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:4201"})
 @RequestMapping("/api/bus-types")
 public class BusTypeController {
     private final BusTypeRepository busTypeRepository;

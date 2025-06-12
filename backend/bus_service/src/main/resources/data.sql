@@ -15,25 +15,25 @@ CREATE TABLE IF NOT EXISTS locations (
     name VARCHAR(255)
 );
 
-TRUNCATE table locations;
+--TRUNCATE table locations;
 
-INSERT INTO locations (id, name) VALUES (1, 'Taj Mahal');
-INSERT INTO locations (id, name) VALUES (2, 'Qutub Minar');
-INSERT INTO locations (id, name) VALUES (3, 'Red Fort');
-INSERT INTO locations (id, name) VALUES (4, 'Gateway of India');
-INSERT INTO locations (id, name) VALUES (5, 'Mysore Palace');
-INSERT INTO locations (id, name) VALUES (6, 'Charminar');
-INSERT INTO locations (id, name) VALUES (7, 'Hawa Mahal');
-INSERT INTO locations (id, name) VALUES (8, 'Amber Fort');
-INSERT INTO locations (id, name) VALUES (9, 'Meenakshi Temple');
-INSERT INTO locations (id, name) VALUES (10, 'Backwaters of Kerala');
-INSERT INTO locations (id, name) VALUES (11, 'Golden Temple');
-INSERT INTO locations (id, name) VALUES (12, 'Victoria Memorial');
-INSERT INTO locations (id, name) VALUES (13, 'Ajanta Caves');
-INSERT INTO locations (id, name) VALUES (14, 'Ellora Caves');
-INSERT INTO locations (id, name) VALUES (15, 'Sundarbans');
-INSERT INTO locations (id, name) VALUES (16, 'Ranthambore National Park');
-INSERT INTO locations (id, name) VALUES (17, 'Kaziranga National Park');
-INSERT INTO locations (id, name) VALUES (18, 'Jaisalmer Fort');
-INSERT INTO locations (id, name) VALUES (19, 'Dal Lake');
-INSERT INTO locations (id, name) VALUES (20, 'Lotus Temple');
+INSERT INTO locations (id, name) VALUES (1, 'Taj Mahal') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (2, 'Qutub Minar') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (3, 'Red Fort') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (4, 'Gateway of India') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (5, 'Mysore Palace') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (6, 'Charminar') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (7, 'Hawa Mahal') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (8, 'Amber Fort') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (9, 'Meenakshi Temple') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (10, 'Backwaters of Kerala') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (11, 'Golden Temple') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (12, 'Victoria Memorial') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (13, 'Ajanta Caves') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (14, 'Ellora Caves') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (15, 'Sundarbans') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (16, 'Ranthambore National Park') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (17, 'Kaziranga National Park') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (18, 'Jaisalmer Fort') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (19, 'Dal Lake') ON CONFLICT (id) DO NOTHING;
+INSERT INTO locations (id, name) VALUES (20, 'Lotus Temple') ON CONFLICT (id) DO NOTHING;
