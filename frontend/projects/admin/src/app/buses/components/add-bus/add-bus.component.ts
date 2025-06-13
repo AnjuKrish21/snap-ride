@@ -5,7 +5,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { FormErrorComponent } from '../../../shared/components/form-error/form-error.component';
+import {
+    FormErrorComponent
+} from '../../../../../../shared/src/lib/components/form-error/form-error.component';
 import { GoBackComponent } from '../../../shared/components/go-back/go-back.component';
 import { ValidatorPatterns } from '../../../shared/constants/shared-contant';
 import { materialImports } from '../../../shared/imports/material.imports';

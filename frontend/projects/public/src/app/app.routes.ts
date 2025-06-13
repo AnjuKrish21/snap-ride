@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 
+import { authGuard } from '../../../shared/src/lib/core/guards/auth.guard';
 import { AppRoutes } from './app.routes.enum';
-import { authGuard } from './guards/auth.guard';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { SnapRideComponent } from './snap-ride/snap-ride.component';
-import { SnaprideBookingComponent } from './snapride-booking/snapride-booking.component';
-import { SnaprideHomeComponent } from './snapride-home/snapride-home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SnapRideComponent } from './components/snap-ride/snap-ride.component';
+import { SnaprideBookingComponent } from './components/snapride-booking/snapride-booking.component';
+import { SnaprideHomeComponent } from './components/snapride-home/snapride-home.component';
 
 export const routes: Routes = [
     {
