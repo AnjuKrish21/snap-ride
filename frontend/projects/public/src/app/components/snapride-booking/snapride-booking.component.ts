@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Bus } from '../../../../../admin/src/app/buses/model/bus.model';
 import { BusService } from '../../../../../admin/src/app/buses/services/bus.service';
 import { materialImports } from '../../../../../shared/src/lib/imports/material.imports';
+import { AppRoutes } from '../../app.routes.enum';
+import { BookingRequestDTO, BookingResponseDTO } from '../../models/BookingDTO';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-snapride-booking',
@@ -24,7 +27,8 @@ export class SnaprideBookingComponent implements OnInit {
   constructor(private readonly busService: BusService,
     private readonly activeRoute: ActivatedRoute,
     private readonly router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private readonly bookingService: BookingService
   ) {
 
     this.seatForm = this.fb.group({
@@ -75,12 +79,17 @@ export class SnaprideBookingComponent implements OnInit {
   }
 
   proceedToPayment(): void {
-    if (this.seatForm.valid) {
-      console.log('Form Submitted:', this.seatForm.value);
-      // Proceed with payment logic
-    } else {
-      console.log('Form is invalid');
+    const bookingFormValue = this.seatForm.value;
+    const bookingDetails: BookingRequestDTO = {
+      busId: this.bus.id,
+      noOfPassengers: bookingFormValue.passengers.length,
+      passengers: bookingFormValue.passengers
     }
+    this.bookingService.addBooking(bookingDetails).subscribe((booking: BookingResponseDTO) => {
+      if (booking.bookingId) {
+        this.router.navigate(['/snapRide/payments', booking.bookingId]);
+      }
+    });
   }
 
 

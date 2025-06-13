@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { config } from '../../../../../public/src/app/config/config';
 import { User } from '../model/user.model';
 
-const baseUrl = config.baseApiUrl; // This is replaced at build time
+const baseUrl = config.userBaseApiUrl; // This is replaced at build time
 
 @Injectable({
   providedIn: 'root'

@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { authGuard } from '../../../shared/src/lib/core/guards/auth.guard';
 import { AppRoutes } from './app.routes.enum';
 import { LoginComponent } from './components/login/login.component';
+import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SnapRideComponent } from './components/snap-ride/snap-ride.component';
 import { SnaprideBookingComponent } from './components/snapride-booking/snapride-booking.component';
@@ -14,6 +15,7 @@ export const routes: Routes = [
         children: [
             { path: AppRoutes.Home, component: SnapRideComponent },
             { path: AppRoutes.SnaprideBooking, component: SnaprideBookingComponent, canActivate: [authGuard] },
+            { path: AppRoutes.Payments, component: PaymentComponent, canActivate: [authGuard] },
         ]
     },
     { path: AppRoutes.Login, component: LoginComponent },

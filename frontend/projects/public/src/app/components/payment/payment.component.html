@@ -1,0 +1,68 @@
+<mat-card class="payment-card">
+  <mat-card-title>Payment Details</mat-card-title>
+  <mat-card-content>
+    <form
+      [formGroup]="paymentForm"
+      (ngSubmit)="onSubmit()"
+      class="payment-form"
+    >
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Cardholder Name</mat-label>
+        <input
+          matInput
+          placeholder="John Doe"
+          formControlName="cardholderName"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Card Number</mat-label>
+        <input
+          matInput
+          formControlName="cardNumber"
+          placeholder="1234 5678 9012 3456"
+          required
+        />
+      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Expiry Date</mat-label>
+          <input
+            matInput
+            formControlName="expiryDate"
+            placeholder="MM/YY"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>CVV</mat-label>
+          <input
+            formControlName="cvv"
+            matInput
+            placeholder="123"
+            type="password"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Amount</mat-label>
+        <input
+          formControlName="amount"
+          matInput
+          placeholder="₹1000"
+          type="number"
+          required
+        />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="full-width">
+        Pay Now
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

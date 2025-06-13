@@ -4,8 +4,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserService } from '../../../../admin/src/app/users/services/user.service';
-import { AuthenticationService } from '../shared/services/authentication.service';
+import { UserService } from '../../../../../admin/src/app/users/services/user.service';
+import {
+    AuthenticationService
+} from '../../../../../shared/src/lib/services/authentication.service';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -75,7 +77,7 @@ describe('LoginComponent', () => {
       // Given
       component.email = 'invalid-email';
       component.password = 'password123';
-      userServiceSpy.login.and.rejectWith(undefined);
+      userServiceSpy.login.and.rejectWith("error" as never);
 
       // When
       component.onLogin();
