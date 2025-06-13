@@ -96,9 +96,7 @@ export class AddBusComponent implements OnInit {
     if (this.busForm.valid) {
       this.busService.saveBus(this.busForm.value)
         .subscribe((response) => {
-          if (response && response.id) {
-            this.router.navigateByUrl('admin/buses');
-          }
+          this.router.navigateByUrl('admin/buses');
         });
     }
   }

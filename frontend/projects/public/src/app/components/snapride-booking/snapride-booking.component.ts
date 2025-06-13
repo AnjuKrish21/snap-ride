@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Bus } from '../../../../../admin/src/app/buses/model/bus.model';
@@ -7,25 +8,30 @@ import { materialImports } from '../../../../../shared/src/lib/imports/material.
 
 @Component({
   selector: 'app-snapride-booking',
-  imports: [...materialImports],
+  imports: [...materialImports, ReactiveFormsModule],
   templateUrl: './snapride-booking.component.html',
   styleUrl: './snapride-booking.component.scss'
 })
 export class SnaprideBookingComponent implements OnInit {
-
-
-  seats = Array.from({ length: 20 }, (_, i) => ({
-    number: i + 1,
-    booked: i % 5 === 0, // simulate some booked seats
-    selected: false
-  }));
   bus: Bus;
+  seatForm: FormGroup;
+
+  get passengers(): FormArray {
+    return this.seatForm.get('passengers') as FormArray;
+  }
 
 
   constructor(private readonly busService: BusService,
     private readonly activeRoute: ActivatedRoute,
-    private readonly router: Router
-  ) { }
+    private readonly router: Router,
+    private fb: FormBuilder
+  ) {
+
+    this.seatForm = this.fb.group({
+      passengers: this.fb.array([this.createPassenger()])
+    });
+
+  }
 
   ngOnInit(): void {
     this.onSubscribeActiveRoute();
@@ -45,16 +51,38 @@ export class SnaprideBookingComponent implements OnInit {
 
   private getBusById(busId: number) {
     this.busService.getBusById(busId).subscribe((bus) => {
-      this.bus = bus;;
+      this.bus = bus;
     });
   }
 
 
-  toggleSeat(seat: any) {
-    if (!seat.booked) {
-      seat.selected = !seat.selected;
+  createPassenger(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
+
+  addPassenger(): void {
+    this.passengers.push(this.createPassenger());
+  }
+
+  removePassenger(index: number): void {
+    if (this.passengers.length > 1) {
+      this.passengers.removeAt(index);
     }
   }
+
+  proceedToPayment(): void {
+    if (this.seatForm.valid) {
+      console.log('Form Submitted:', this.seatForm.value);
+      // Proceed with payment logic
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+
 
 
 }

@@ -7,16 +7,16 @@ export class AuthenticationService {
 
   constructor() { }
 
-  isLoggedIn: boolean = false;
-
   setAuthenticationToken(token: string): void {
     localStorage.setItem('token', token);
-    this.isLoggedIn = true;
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('token') ? true : false;
   }
 
   logout(): void {
     localStorage.removeItem('token');
-    this.isLoggedIn = false;
   }
 
   getAuthToken(): string {

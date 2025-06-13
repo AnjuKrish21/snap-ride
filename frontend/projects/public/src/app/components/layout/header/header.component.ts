@@ -6,6 +6,7 @@ import { materialImports } from '../../../../../../shared/src/lib/imports/materi
 import {
     AuthenticationService
 } from '../../../../../../shared/src/lib/services/authentication.service';
+import { AppRoutes } from '../../../app.routes.enum';
 
 @Component({
   selector: 'app-header',
@@ -19,15 +20,16 @@ export class HeaderComponent {
   constructor(private readonly router: Router,
     private readonly authenticationService: AuthenticationService
   ) {
-    this.isLoggedIn = this.authenticationService.isLoggedIn;
+    this.isLoggedIn = this.authenticationService.isLoggedIn();
   }
 
   redirectToLogin() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl(`/${AppRoutes.Login}`);
   }
 
   logout() {
-
+    this.authenticationService.logout();
+    this.router.navigateByUrl(`/${AppRoutes.SnapRide}`);
   }
 
 }
