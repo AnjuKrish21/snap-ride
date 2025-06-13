@@ -5,10 +5,13 @@ import com.snapride.bus_service.dto.PassengerResponseDTO;
 import com.snapride.bus_service.dto.ResponseBookingDTO;
 import com.snapride.bus_service.entity.Booking;
 import com.snapride.bus_service.entity.BookingPassenger;
+import com.snapride.bus_service.entity.Bus;
 import com.snapride.bus_service.repository.BookingRepository;
+import com.snapride.bus_service.repository.BusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +20,9 @@ public class BookingService {
 
     @Autowired
     private BookingRepository bookingRepository;
+    @Autowired
+    private BusRepository busRepository;
+
 
     public ResponseBookingDTO createBooking(CreateBookingDTO dto) {
         Booking booking = new Booking();
@@ -52,5 +58,14 @@ public class BookingService {
 
         response.setPassengers(passengerResponses);
         return response;
+    }
+
+    public Long getAvailableSeats(Long bookingId) {
+        Bus bus = busRepository.getReferenceById(bookingId);
+        Integer capacity = bus.getCapacity();
+
+        List<Booking> booking = bookingRepository.findAllByBusId(bookingId);
+        long totalBooking = booking.size();
+        return capacity-totalBooking;
     }
 }

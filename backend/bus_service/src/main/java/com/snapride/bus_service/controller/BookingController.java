@@ -22,4 +22,10 @@ public class BookingController {
         ResponseBookingDTO response = bookingService.createBooking(dto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    @GetMapping("availableSeats/{id}")
+    public ResponseEntity<Long> getAvailableSeats(@PathVariable Long id) {
+        Long response = bookingService.getAvailableSeats(id);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
 }

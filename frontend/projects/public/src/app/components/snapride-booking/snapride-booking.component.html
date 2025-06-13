@@ -1,13 +1,13 @@
-<form [formGroup]="seatForm" (ngSubmit)="proceedToPayment()">
+<form [formGroup]="seatForm">
   <div class="seat-selection-container">
     <!-- Available Seats Section -->
     <h3>
       Available Seats
-      <span>{{ bus.capacity - passengers.controls.length }}</span>
+      <span>{{ seatsCount }}</span>
     </h3>
 
     <!-- <mat-divider></mat-divider> -->
-    <button mat-stroked-button color="primary" (click)="addPassenger()">
+    <button [disabled]="seatsCount===0" mat-stroked-button color="primary" (click)="addPassenger()">
       <mat-icon>add</mat-icon> Add Passenger
     </button>
     <!-- Passenger Details Section -->
@@ -59,12 +59,12 @@
       }
     </div>
 
-    <button mat-stroked-button color="primary" (click)="addPassenger()">
+    <button [disabled]="seatsCount===0" mat-stroked-button color="primary" (click)="addPassenger()">
       <mat-icon>add</mat-icon> Add Passenger
     </button>
 
     <br /><br />
-    <button [disabled]="!seatForm.valid" mat-raised-button color="accent">
+    <button [disabled]="!seatForm.valid" (click)="proceedToPayment()" mat-raised-button color="accent">
       Proceed to Payment
     </button>
   </div>

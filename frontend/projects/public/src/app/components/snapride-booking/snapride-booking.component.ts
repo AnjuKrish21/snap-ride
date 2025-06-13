@@ -18,6 +18,7 @@ import { BookingService } from '../../services/booking.service';
 export class SnaprideBookingComponent implements OnInit {
   bus: Bus;
   seatForm: FormGroup;
+  seatsCount: number = 0;
 
   get passengers(): FormArray {
     return this.seatForm.get('passengers') as FormArray;
@@ -56,6 +57,13 @@ export class SnaprideBookingComponent implements OnInit {
   private getBusById(busId: number) {
     this.busService.getBusById(busId).subscribe((bus) => {
       this.bus = bus;
+      this.availableSeats();
+    });
+  }
+
+  private availableSeats() {
+    this.bookingService.availableSeats(this.bus.id).subscribe((seatsCount: number) => {
+      this.seatsCount = seatsCount;
     });
   }
 
@@ -69,11 +77,13 @@ export class SnaprideBookingComponent implements OnInit {
   }
 
   addPassenger(): void {
+    this.seatsCount--;
     this.passengers.push(this.createPassenger());
   }
 
   removePassenger(index: number): void {
     if (this.passengers.length > 1) {
+      this.seatsCount++;
       this.passengers.removeAt(index);
     }
   }

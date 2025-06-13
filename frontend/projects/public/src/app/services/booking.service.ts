@@ -16,4 +16,8 @@ export class BookingService {
   addBooking(booking: BookingRequestDTO): Observable<BookingResponseDTO> {
     return this.http.post<BookingResponseDTO>(`${this.baseUrl}/bookings`, booking);
   }
+
+  availableSeats(id: number): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/bookings/availableSeats/${id}`);
+  }
 }

@@ -9,7 +9,7 @@ import { Bus, BusType, Location } from '../model/bus.model';
 @Injectable({
   providedIn: 'root'
 })
-export class BusService {  
+export class BusService {   
 
   private baseUrl = config.busBaseApiUrl;
   constructor(private readonly http: HttpClient) { }
