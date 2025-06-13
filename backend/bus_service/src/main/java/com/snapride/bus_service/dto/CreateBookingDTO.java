@@ -1,5 +1,7 @@
 package com.snapride.bus_service.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,8 +12,12 @@ public class CreateBookingDTO {
 
     private Long busId;
 
+    @NotNull(message = "Missing parameter: noOfPassengers")
+    @Size(min = 1, message = "At least one passenger is required")
     private int noOfPassengers;
 
+    @NotNull(message = "Missing parameter: passengers")
+    @Size(min = 1, message = "At least one passenger is required")
     private List<PassengerRequestDTO> passengers;
 
     public Long getBusId() {
