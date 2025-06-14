@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Bus } from '../../../../../admin/src/app/buses/model/bus.model';
 import { BusService } from '../../../../../admin/src/app/buses/services/bus.service';
+import { ERROR } from '../../../../../shared/src/lib/constants/error';
 import { materialImports } from '../../../../../shared/src/lib/imports/material.imports';
+import { RegexUtil } from '../../../../../shared/src/lib/utils/regex.util';
 import { AppRoutes } from '../../app.routes.enum';
 import { BookingRequestDTO, BookingResponseDTO } from '../../models/BookingDTO';
 import { BookingService } from '../../services/booking.service';
@@ -48,7 +50,7 @@ export class SnaprideBookingComponent implements OnInit {
       if (busId) {
         this.getBusById(parseInt(busId));
       } else {
-        console.warn('No bus ID provided in route parameters.');
+        console.warn(ERROR.CONSOLE.INVALID_URL);
         this.router.navigate(['/']);
       }
     });
@@ -71,7 +73,7 @@ export class SnaprideBookingComponent implements OnInit {
   createPassenger(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
-      mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      mobile: ['', [Validators.required, Validators.pattern(RegexUtil.PHONE)]],
       email: ['', [Validators.required, Validators.email]]
     });
   }

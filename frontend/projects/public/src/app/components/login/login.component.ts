@@ -5,10 +5,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../../../../admin/src/app/users/services/user.service';
+import { ERROR } from '../../../../../shared/src/lib/constants/error';
 import { materialImports } from '../../../../../shared/src/lib/imports/material.imports';
 import {
     AuthenticationService
 } from '../../../../../shared/src/lib/services/authentication.service';
+import { NotificationService } from '../../../../../shared/src/public-api';
 import { AppRoutes } from '../../app.routes.enum';
 
 @Component({
@@ -20,8 +22,8 @@ import { AppRoutes } from '../../app.routes.enum';
 export class LoginComponent {
   constructor(private readonly router: Router,
     private readonly userService: UserService,
-    private readonly matSnackBar: MatSnackBar,
-    private readonly authenticationService: AuthenticationService
+    private readonly authenticationService: AuthenticationService,
+    private readonly notificationService: NotificationService
   ) { }
   email: string = '';
   password: string = '';
@@ -38,13 +40,8 @@ export class LoginComponent {
         }
       },
       error: (error) => {
-        console.error('Login failed', error);
-        this.matSnackBar.open('Login failed. Please check your credentials and try again.', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-          panelClass: ['snackbar-error']
-        });
+        console.error(ERROR.CONSOLE.LOGIN_FAILED, error);
+        this.notificationService.show(ERROR.LOGIN_FAILED);
       }
     });
   }

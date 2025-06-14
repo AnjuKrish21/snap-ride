@@ -10,6 +10,7 @@ import { UserService } from '../../../../../admin/src/app/users/services/user.se
 import {
     FormErrorComponent
 } from '../../../../../shared/src/lib/components/form-error/form-error.component';
+import { ERROR } from '../../../../../shared/src/lib/constants/error';
 import { materialImports } from '../../../../../shared/src/lib/imports/material.imports';
 
 @Component({
@@ -62,7 +63,7 @@ export class RegisterComponent {
           this.redirectToLogin()
         },
         error: (error) => {
-          console.error('Registration failed:', error);
+          console.error(ERROR.CONSOLE.REGISTRATION_FAILED, error);
         }
       });
 

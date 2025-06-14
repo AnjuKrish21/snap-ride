@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { materialImports } from '../../../../../shared/src/lib/imports/material.imports';
+import { RegexUtil } from '../../../../../shared/src/lib/utils/regex.util';
 
 @Component({
   selector: 'app-payment',
@@ -12,14 +13,15 @@ import { materialImports } from '../../../../../shared/src/lib/imports/material.
 export class PaymentComponent {
   paymentForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private readonly fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
     this.paymentForm = this.fb.group({
       cardholderName: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
-      expiryDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
-      cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
+      cardNumber: ['', [Validators.required, Validators.pattern(RegexUtil.CARD_NUMBER)]],
+      expiryDate: ['', [Validators.required, Validators.pattern(RegexUtil.EXPIRY_DATE)]],
+      cvv: ['', [Validators.required, Validators.pattern(RegexUtil.CVV)]],
       amount: ['', [Validators.required, Validators.min(1)]]
     });
   }
